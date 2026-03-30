@@ -2,12 +2,15 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-use App\Livewire\GoldForm;
+use App\Livewire\SaleForm;
+use App\Livewire\PurchaseForm;
+
 
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/gold-form', GoldForm::class)->name('gold-form');
+Route::get('/gold-sale', SaleForm::class)->name('gold-sale');
+Route::get('/gold-purchase', PurchaseForm::class)->name('gold-purchase');
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');

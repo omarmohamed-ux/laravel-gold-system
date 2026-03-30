@@ -3,14 +3,17 @@
 
             <!-- Header -->
             <div class="bg-gradient-to-r from-blue-900 to-blue-700 px-8 py-6 rounded-none md:rounded-lg text-center">
-                <h2 class="text-xl font-bold text-black">نموذج تسجيل عملية بيع (بيعة)</h2>
+                <h2 class="text-xl font-bold text-black">نموذج شراء ذهب من عميل (مستعمل/كسر)</h2>
                 <p class="text-blue-100 mt-1 text-sm">
                     يرجى تعبئة كافة التفاصيل بدقة لضمان صحة السجلات
+                </p>
+                <p class="text-blue-100 mt-1 text-sm">
+                    تأكد من التحقق من هوية العميل ووزن الذهب بدقة قبل إتمام الصرف
                 </p>
             </div>
 
             <form wire:submit.prevent="save" enctype="multipart/form-data" class="p-8">
-                <h1 class="text-lg font-bold text-gray-800 col-span-full">معلومات العميل</h1>
+                <h1 class="text-lg font-bold text-gray-800 col-span-full"> معلومات العميل(البائع)</h1>
                                     <hr class="col-span-full border-gray-300 my-6" />
 
                 <!-- Grid -->
@@ -19,7 +22,7 @@
                     <!-- اسم العميل -->
                     <div class="md:col-span-2">
                         <label class="block text-sm font-semibold text-gray-800">
-                            اسم العميل الثلاثي
+                            اسم العميل الثلاثي(البائع)
                         </label>
                         <input type="text"
                                wire:model="customer_name"
@@ -54,19 +57,6 @@
                                placeholder="1010xxxxxx"
                                class="mt-2 w-full rounded-lg border border-gray-300 px-4 py-2.5 text-sm shadow-sm focus:ring-2 focus:ring-indigo-600">
                         @error('id_number')
-                        <span class="text-red-500 text-xs">{{ $message }}</span>
-                        @enderror
-                    </div>
-
-                    <!-- تاريخ الميلاد -->
-                    <div>
-                        <label class="block text-sm font-semibold text-gray-800">
-                            تاريخ الميلاد
-                        </label>
-                        <input type="date"
-                               wire:model="birth_date"
-                               class="mt-2 w-full rounded-lg border border-gray-300 px-4 py-2.5 text-sm shadow-sm focus:ring-2 focus:ring-indigo-600">
-                        @error('birth_date')
                         <span class="text-red-500 text-xs">{{ $message }}</span>
                         @enderror
                     </div>
@@ -152,7 +142,7 @@
                     <!-- سعر البيع -->
                     <div>
                         <label class="block text-sm font-semibold text-gray-800">
-                            سعر البيع
+                           المبلغ المدفوع للعميل (سعر البيع)
                         </label>
                         <input type="text"
                                wire:model="sale_price"
@@ -165,7 +155,7 @@
 
                     <!-- صورة المنتج -->
                     <div class="col-span-full">
-                        <label for="cover-photo" class="block text-sm/6 font-medium text-gray-900">ارفع صورة المنتج</label>
+                        <label for="cover-photo" class="block text-sm/6 font-medium text-gray-900">تصوير الذهب المستلم</label>
                         <div class="mt-2 flex justify-center rounded-lg border border-dashed border-gray-900/25 px-6 py-10">
                             <div class="text-center">
                                     <svg viewBox="0 0 24 24" fill="currentColor" data-slot="icon" aria-hidden="true" class="mx-auto size-12 text-gray-300">

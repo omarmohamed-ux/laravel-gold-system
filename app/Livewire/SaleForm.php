@@ -7,7 +7,7 @@ use Livewire\Component;
 use Illuminate\Support\Facades\Auth;
 
 
-class GoldForm extends Component
+class SaleForm extends Component
 {
     use WithFileUploads;
 
@@ -35,6 +35,7 @@ class GoldForm extends Component
         }
         // 3. الحفظ في الجدول
         GoldTransaction::create([
+            'type' => 'sale', // تحديد نوع العملية
             'customer_name' => $this->customer_name,
             'phone' => $this->phone,
             'id_number' => $this->id_number,
@@ -57,6 +58,6 @@ class GoldForm extends Component
     }
     public function render()
     {
-        return view('livewire.gold-form');
+        return view('livewire.sale-form');
     }
 }

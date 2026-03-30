@@ -25,6 +25,7 @@ return new class extends Migration
             $table->decimal('sale_price', 15, 2);  // سعر البيع
             $table->string('product_image')->nullable(); //  صورة المنتج
             $table->foreignId('user_id')->constrained(); // الموظف الذي قام بالإدخال 
+            $table->string('type'); // نوع العمليه البيع او الشراء
             $table->timestamps();
         });
     }

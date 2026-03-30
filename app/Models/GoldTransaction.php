@@ -18,6 +18,7 @@ class GoldTransaction extends Model
         'karat',
         'sale_price',
         'product_image',
-        'user_id'
+        'user_id',
+        'type'
     ];
 }
