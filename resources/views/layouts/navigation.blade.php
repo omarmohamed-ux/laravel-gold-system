@@ -40,6 +40,65 @@
                             </x-dropdown-link>
                         </x-slot>
                     </x-dropdown>
+                    <!-- PDF Dropdown -->
+                    <x-dropdown align="right" width="48">
+                        <x-slot name="trigger">
+                            <button class="bg-red-600 hover:bg-red-700 text-white font-sm py-1.5 px-3 rounded shadow-lg transition flex items-center gap-2">
+                                <div class="flex items-center">
+                                    <span>PDF</span>
+                                    <span class="ms-1 text-lg">📄</span>
+                                </div>
+                                
+                                <div class="flex items-center">
+                                    <svg class="fill-current h-4 w-4" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.214a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                                    </svg>
+                                </div>
+                            </button>
+                        </x-slot>
+
+                        <x-slot name="content">
+                            <x-dropdown-link :href="route('reports.viewpdf')">
+                                {{ __(' الاطلاع على تقرير PDF 📄') }}
+                            </x-dropdown-link>
+                            <x-dropdown-link :href="route('reports.generatepdf')">
+                                {{ __(' تحميل تقرير PDF 📄') }}
+                            </x-dropdown-link>
+                        </x-slot>
+                    </x-dropdown>
+
+                    <p class="mx-2 text-gray-400">|</p>
+                    
+                    <!-- Excel Dropdown -->
+                    <x-dropdown align="right" width="48">
+                        <x-slot name="trigger">
+                            <button class="bg-blue-600 hover:bg-blue-700 text-white font-sm py-1.5 px-3 rounded shadow-lg transition flex items-center gap-2">
+                                <div class="flex items-center">
+                                    <span>Excel</span>
+                                    <span class="ms-1 text-lg">📄</span>
+                                </div>
+                                
+                                <div class="flex items-center">
+                                    <svg class="fill-current h-4 w-4" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.214a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                                    </svg>
+                                </div>
+                            </button>
+                        </x-slot>
+
+                        <x-slot name="content">
+                            <x-dropdown-link :href="route('reports.viewexcel')">
+                                {{ __(' اصدار ملف Excel 📄') }}
+                            </x-dropdown-link>
+                            <x-dropdown-link :href="route('reports.generateexcel')">
+                                {{ __(' استيراد ملف Excel 📄') }}
+                            </x-dropdown-link>
+                        </x-slot>
+                    </x-dropdown>
+
+                    <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                        
+                </div>
                 </div>
             </div>
 
