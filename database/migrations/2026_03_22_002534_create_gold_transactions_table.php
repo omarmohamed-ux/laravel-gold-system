@@ -13,19 +13,23 @@ return new class extends Migration
     {
         Schema::create('gold_transactions', function (Blueprint $table) {
             $table->id();
-            $table->string('customer_name');       // اسم العميل الثلاثي
-            $table->string('phone')->unique()->nullable();               // رقم الجوال
-            $table->string('id_number')->unique()->nullable(); // رقم الهوية/الاقامة
-            $table->date('birth_date');            // تاريخ الميلاد
-            $table->string('id_version')->unique()->nullable(); // رقم نسخة الهوية
-            $table->string('shop_name');           // اسم المحل (المشتري)
-            $table->string('staff_name');          // اسم الموظف من المحل
-            $table->decimal('weight', 8, 2);       // الوزن
-            $table->integer('karat');              // العيار
-            $table->decimal('sale_price', 15, 2);  // سعر البيع
-            $table->string('product_image')->nullable(); //  صورة المنتج
-            $table->foreignId('user_id')->constrained(); // الموظف الذي قام بالإدخال 
-            $table->string('type'); // نوع العمليه البيع او الشراء
+            $table->string('customer_name'); 
+
+            // رقم الجوال والهوية (إجباريين للأمان القانوني، لكن بدون unique للسماح بتكرار الشراء لنفس العميل)
+            $table->string('phone'); 
+            $table->string('id_number'); 
+            $table->string('id_version'); 
+
+            $table->date('birth_date')->nullable(); // اختياري لتجنب أخطاء الإدخال
+            $table->string('shop_name'); 
+            $table->string('staff_name'); 
+            $table->decimal('weight', 8, 2); 
+            $table->integer('karat'); 
+            $table->decimal('sale_price', 15, 2); 
+            $table->string('product_image')->nullable(); 
+            $table->foreignId('user_id')->constrained(); 
+            $table->string('type'); 
+            $table->foreignId('customer_id')->constrained('customers'); // الربط بجدول العملاء
             $table->timestamps();
         });
     }

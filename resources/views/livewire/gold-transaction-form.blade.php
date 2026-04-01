@@ -3,17 +3,14 @@
 
             <!-- Header -->
             <div class="bg-gradient-to-r from-blue-900 to-blue-700 px-8 py-6 rounded-none md:rounded-lg text-center">
-                <h2 class="text-xl font-bold text-black">نموذج شراء ذهب من عميل (مستعمل/كسر)</h2>
+                <h2 class="text-xl font-bold text-black">نموذج تسجيل عمليات البيع و الشراء</h2>
                 <p class="text-blue-100 mt-1 text-sm">
                     يرجى تعبئة كافة التفاصيل بدقة لضمان صحة السجلات
-                </p>
-                <p class="text-blue-100 mt-1 text-sm">
-                    تأكد من التحقق من هوية العميل ووزن الذهب بدقة قبل إتمام الصرف
                 </p>
             </div>
 
             <form wire:submit.prevent="save" enctype="multipart/form-data" class="p-8">
-                <h1 class="text-lg font-bold text-gray-800 col-span-full"> معلومات العميل(البائع)</h1>
+                <h1 class="text-lg font-bold text-gray-800 col-span-full">معلومات العميل</h1>
                                     <hr class="col-span-full border-gray-300 my-6" />
 
                 <!-- Grid -->
@@ -22,7 +19,7 @@
                     <!-- اسم العميل -->
                     <div class="md:col-span-2">
                         <label class="block text-sm font-semibold text-gray-800">
-                            اسم العميل الثلاثي(البائع)
+                            اسم العميل الثلاثي(المشتري)
                         </label>
                         <input type="text"
                                wire:model="customer_name"
@@ -61,6 +58,19 @@
                         @enderror
                     </div>
 
+                    <!-- تاريخ الميلاد -->
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-800">
+                            تاريخ الميلاد
+                        </label>
+                        <input type="date"
+                               wire:model="birth_date"
+                               class="mt-2 w-full rounded-lg border border-gray-300 px-4 py-2.5 text-sm shadow-sm focus:ring-2 focus:ring-indigo-600">
+                        @error('birth_date')
+                        <span class="text-red-500 text-xs">{{ $message }}</span>
+                        @enderror
+                    </div>
+
                     <!-- نسخة الهوية -->
                     <div>
                         <label class="block text-sm font-semibold text-gray-800">
@@ -82,7 +92,7 @@
                     <!-- اسم المحل -->
                     <div class="md:col-span-2">
                         <label class="block text-sm font-semibold text-gray-800">
-                            اسم المحل (المشتري)
+                            اسم المحل (البائع)
                         </label>
                         <input type="text"
                                wire:model="shop_name"
@@ -142,7 +152,7 @@
                     <!-- سعر البيع -->
                     <div>
                         <label class="block text-sm font-semibold text-gray-800">
-                           المبلغ المدفوع للعميل (سعر البيع)
+                            سعر البيع
                         </label>
                         <input type="text"
                                wire:model="sale_price"
@@ -153,9 +163,23 @@
                         @enderror
                     </div>
 
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-800">
+                            نوع العملية(بيع/شراء)
+                        </label>
+                        <select wire:model="type"
+                                class="mt-2 w-full rounded-lg border border-gray-300 px-4 py-2.5 text-sm shadow-sm focus:ring-2 focus:ring-indigo-600">
+                            <option value="">اختر نوع العملية</option>
+                            <option value="sale">بيع</option>
+                            <option value="purchase">شراء</option>
+                        </select>
+                        @error('type')
+                        <span class="text-red-500 text-xs">{{ $message }}</span>
+                        @enderror
+                    </div>
                     <!-- صورة المنتج -->
                     <div class="col-span-full">
-                        <label for="cover-photo" class="block text-sm/6 font-medium text-gray-900">تصوير الذهب المستلم</label>
+                        <label for="cover-photo" class="block text-sm/6 font-medium text-gray-900">ارفع صورة المنتج(الذهب)</label>
                         <div class="mt-2 flex justify-center rounded-lg border border-dashed border-gray-900/25 px-6 py-10">
                             <div class="text-center">
                                     <svg viewBox="0 0 24 24" fill="currentColor" data-slot="icon" aria-hidden="true" class="mx-auto size-12 text-gray-300">
@@ -166,7 +190,7 @@
                                     <span>التقط صورة او ارفع ملف</span>
                                     <input id="file-upload" 
                                         name="file-upload" 
-                                        type="file" 
+                                        type="file"  
                                         wire:model="product_image" 
                                         accept="image/*" 
                                         capture="environment" 
@@ -214,7 +238,6 @@
                                 }
                             })
                         }
-
                         // لسماع رسالة النجاح بعد الحفظ وإظهار تنبيه جميل
                         window.addEventListener('swal:success', event => {
                             Swal.fire({
@@ -229,7 +252,16 @@
                             }, 250);
                             });
                         });
-                        
+                        // لسماع رسالة الخطأ بعد محاولة الحفظ وإظهار تنبيه جميل
+                        window.addEventListener('swal:error', event => {
+                            Swal.fire({
+                                title: 'المدخلات الحالية غير مطابقة لسجل العميل في النظام',
+                                text: event.detail.message,
+                                icon: 'error',
+                                timer: 3000,
+                                showConfirmButton: false
+                            });
+                        });
 
                     </script>
             </form>

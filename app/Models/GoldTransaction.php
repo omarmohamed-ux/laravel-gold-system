@@ -8,6 +8,7 @@ class GoldTransaction extends Model
 {
     protected $fillable = [
         'customer_name',
+        'customer_id',
         'phone',
         'id_number',
         'birth_date',
@@ -21,4 +22,8 @@ class GoldTransaction extends Model
         'user_id',
         'type'
     ];
+    public function customer()
+{
+    return $this->belongsTo(Customer::class);
+}
 }

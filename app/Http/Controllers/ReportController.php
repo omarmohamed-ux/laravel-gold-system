@@ -18,6 +18,7 @@ class ReportController extends Controller
         $transactions = GoldTransaction::all();
         $datatime = now()->format('Y-m-d_H-i-s');
         $pdf = Pdf::loadView('pdf.report', compact('transactions'));
+        $pdf->setpaper('A4', 'landscape');
         return $pdf->stream();
     }
     public function generatePdf()
@@ -25,6 +26,7 @@ class ReportController extends Controller
         $transactions = GoldTransaction::all();
         $datatime = now()->format('Y-m-d_H-i-s');
         $pdf = Pdf::loadView('pdf.report', compact('transactions'));
+        $pdf->setpaper('A4', 'landscape');
         return $pdf->download('gold_report.pdf');
     }
 }
